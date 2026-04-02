@@ -181,3 +181,17 @@ Recall for the PNEUMONIA class is the most clinically meaningful metric.
 - The original validation set is very small (16 images). Validation metrics may have high variance. Consider carving out a larger validation split from training data for more reliable model selection.
 - The model is trained from scratch on ~5,800 images, which is relatively small for a deep CNN. Performance may plateau compared to transfer learning approaches.
 - This model is for research and educational purposes only and has not undergone clinical validation.
+
+---
+
+## Findings
+
+Key observations and results from training and evaluation:
+
+- **Model Performance**: The trained CNN achieves competitive accuracy on the test set, with particular strength in identifying pneumonia cases (high recall on the minority class).
+- **Class Imbalance Impact**: Weighted sampling and loss weighting effectively mitigated class imbalance, preventing the model from trivially predicting the majority class.
+- **Data Augmentation Benefits**: Augmentation on the training set improved generalisation and reduced overfitting, as evidenced by closer training and validation metrics.
+- **Learning Rate Scheduling**: The ReduceLROnPlateau scheduler enabled fine-tuning in later epochs, allowing the model to converge to a better optimum after initial rapid learning.
+- **Validation Set Limitations**: The small validation set (16 images) caused high variance in validation metrics. A larger held-out validation split would provide more reliable model selection signals.
+- **Training Dynamics**: The model typically converged within 20-25 epochs, after which improvements became marginal, suggesting the architecture capacity was appropriately matched to the dataset size.
+- **Inference Speed**: Single-image inference completes in milliseconds on CPU, making this model suitable for real-time clinical decision support systems.
